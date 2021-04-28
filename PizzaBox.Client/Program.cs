@@ -77,12 +77,13 @@ namespace PizzaBox.Client
       SelectSomePizzas();
 
       //  c) foot
-      BuildTheOrderObject();
+      BuildTheOrderObject();//...
+      ExitTheApplication();
 
     }// /md 'Build..'
 
-    ///
 
+    /// Select a customer for the order.
     private static void SelectACustomer()
     {
       System.Console.Write("What is your name, please? ");
@@ -90,6 +91,7 @@ namespace PizzaBox.Client
       System.Console.WriteLine();
     }
 
+    /// Select a store for the order.
     private static void SelectAStore() { theStoreSelected = new StoreSingleton().ToString(); }
     private static void SelectSomePizzas()
     {
@@ -278,6 +280,16 @@ namespace PizzaBox.Client
     }// /md 'ViewAllOrders'
 
     #endregion orderStuff
+
+    ///
+    private static void ExitTheApplication()
+    {
+      System.Console.Write("Press [ENTER] to exit the application.");
+      System.Console.ReadLine();
+      System.Console.WriteLine("*Exited the application successfully.*");
+    }
+
+
   }// /cla
 }// /ns
  // EoF

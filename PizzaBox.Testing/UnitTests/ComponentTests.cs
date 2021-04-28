@@ -1,3 +1,4 @@
+/*
 // [I]. HEAD
 //  A] Libraries
 
@@ -88,4 +89,4 @@ namespace PizzaBox.Testing
 
   }// /cla
 }// /ns
-// EoF
+// EoF */
