@@ -71,7 +71,7 @@ namespace PizzaBox.Client
     {
       //  a) head
       SelectACustomer();
-      SelectAStore();
+      //SelectAStore();
 
       //  b) body
       SelectSomePizzas();
@@ -87,6 +87,7 @@ namespace PizzaBox.Client
     {
       System.Console.Write("What is your name, please? ");
       theCustomerSelected = System.Console.ReadLine();
+      System.Console.WriteLine();
     }
 
     private static void SelectAStore() { theStoreSelected = new StoreSingleton().ToString(); }
@@ -98,13 +99,14 @@ namespace PizzaBox.Client
       {
         AddAPizza();
         _numberOfPizzas++;
-        if (_numberOfPizzas < PizzaOrder.MAXIMUM_NUMBER_OF_PIZZAS)
+        if (_numberOfPizzas >= PizzaOrder.MAXIMUM_NUMBER_OF_PIZZAS)
+          _doContinueToOrderPizzas = false;
+        else
         {
           System.Console.Write("Add another pizza? (Y/N)?  ");
           string _s = System.Console.ReadLine();
           if (_s != "Y") { _doContinueToOrderPizzas = false; }
         }
-        else { _doContinueToOrderPizzas = false; }
       }
     }// /md 'ChoosePizzas'
 

@@ -29,7 +29,7 @@ namespace PizzaBox.Domain.Abstracts
     public PizzaCrust Crust { get; set; }
     public PizzaSauce Sauce { get; set; }
     public PizzaToppingCheese Cheese { get; set; }
-    public List<PizzaTopping> Toppings { get; set; }
+    public List<APizzaTopping> Toppings { get; set; }
     public PizzaSpice Spice { get; set; }
 
 
@@ -46,7 +46,7 @@ namespace PizzaBox.Domain.Abstracts
         return new Price(
           Size.PriceMultiplier() *
           (BASE_PRICE.Amount //pizza
-           + (Toppings.Count * PizzaTopping.BASE_PRICE.Amount)
+           + (Toppings.Count * APizzaTopping.BASE_PRICE.Amount)
           ));
       }
     }
@@ -63,7 +63,7 @@ namespace PizzaBox.Domain.Abstracts
       Crust = new PizzaCrust();
       Sauce = new PizzaSauce();
       Cheese = new PizzaToppingCheese();
-      Toppings = new List<PizzaTopping>(); //<!>
+      Toppings = new List<APizzaTopping>(); //<!>
       Spice = new PizzaSpice();
     }// /defaut inherited factory
 
@@ -73,7 +73,7 @@ namespace PizzaBox.Domain.Abstracts
     //public void setCrust(PizzaCrust crust) { Crust = crust; }
 
 
-    public void AddTopping(PizzaTopping _topping) { Toppings.Add(_topping); }
+    public void AddTopping(APizzaTopping _topping) { Toppings.Add(_topping); }
 
     /// [III]. FOOT
     public override string ToString()
@@ -85,7 +85,7 @@ namespace PizzaBox.Domain.Abstracts
       asString.Append($"with {Sauce} sauce, ");
       asString.Append($"{Cheese} cheese, ");
 
-      foreach (PizzaTopping _topping in Toppings)
+      foreach (APizzaTopping _topping in Toppings)
       {
         asString.Append("{_topping}, ");
       }

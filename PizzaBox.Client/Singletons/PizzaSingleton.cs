@@ -32,7 +32,7 @@ namespace PizzaBox.Client.Singletons
     {
       //  a) head
       PopulateThePizzaChoices();
-      PopulateTheChoiceStringList();//<!> x-depr
+      //PopulateTheChoiceStringList();//<!> x-depr
 
       //  b) body
       DisplayTheChoices();
@@ -55,6 +55,7 @@ namespace PizzaBox.Client.Singletons
     }// /md 'Pop..Choices'
 
     //<!> x-depr
+    /* 
     private void PopulateTheChoiceStringList()
     {
       Pizzas = new List<string>();
@@ -62,9 +63,10 @@ namespace PizzaBox.Client.Singletons
       Pizzas.Add("cheese");
       Pizzas.Add("veggie");
       Pizzas.Add("meat");
-    }
+    } //*/
 
     //<!> x-depr
+    /*
     private void DisplayThePizzaChoicesOnToTheScreen1() //<!> x-depr
     {
       int _index = -1;
@@ -72,17 +74,24 @@ namespace PizzaBox.Client.Singletons
       {
         System.Console.WriteLine($"{++_index}: {pizza} pizza");
       }
-    }
+    } */
 
     /// 
     private void DisplayTheChoices()
     {
+      //  a) head
+      System.Console.WriteLine("Please select a store from the following choices: ");
+
+      //  b) body
       int _pizzaIndex = 0;
       foreach (APizza _pizza in PizzaChoices)
       {
         System.Console.WriteLine(
-          $"{_pizzaIndex++}: {_pizza}");
+          $"{_pizzaIndex++}: {_pizza.ToString()}");
       }
+
+      //  c) foot
+      System.Console.WriteLine();
     }// /md 'Display..Choices..'
 
     ///

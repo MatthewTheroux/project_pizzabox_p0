@@ -29,8 +29,8 @@ namespace PizzaBox.Domain.Models.Pizzas
       Sauce = new PizzaSauce(PizzaSauce.Choice.SMOOTH_MARINARA);
 
       // Add it, twice.
-      AddTopping(new PizzaToppingMeat(PizzaToppingMeat.Choice.PEPPERONI) as PizzaTopping);
-      AddTopping(new PizzaToppingMeat(PizzaToppingMeat.Choice.PEPPERONI) as PizzaTopping);
+      AddTopping(new PizzaToppingMeat(PizzaToppingMeat.Choice.PEPPERONI) as APizzaTopping);
+      AddTopping(new PizzaToppingMeat(PizzaToppingMeat.Choice.PEPPERONI) as APizzaTopping);
 
       //  c) foot  =created
     }

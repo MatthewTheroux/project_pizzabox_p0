@@ -24,6 +24,8 @@ namespace PizzaBox.Client.Singletons
     // 2. 
     private int indexSelected = -1; // ='unselected"
 
+    private string storeSelected = "no store selected";
+
 
     // [II]. BODY
     public StoreSingleton()
@@ -55,12 +57,15 @@ namespace PizzaBox.Client.Singletons
     /// Display the selection choices on to the screen.
     public void DisplayTheChoicesOnToTheScreen()
     {
+      System.Console.WriteLine("Please select a store from the following choices: ");
       int _counter = -1; // 'UNPOPULATED'
       foreach (string _item in storeChoices)
       {
         ++_counter;
         System.Console.WriteLine(_counter + ": " + _item);
       }
+      System.Console.WriteLine();
+
     }// /md 'Display..'
 
     public int RetrieveTheUserSelectionOfChoices()
@@ -68,14 +73,14 @@ namespace PizzaBox.Client.Singletons
       //  a) head
       //int _selectedChoice_int = -1;
       string _userInput_str = "";
-      bool isValidSelection = false;
+      bool _isValidSelection = false;
 
       //  b) body
-      while (!isValidSelection)
+      while (!_isValidSelection)
       {
         _userInput_str = System.Console.ReadLine();
         //isValidSelection = int.TryParse(_userInput_str, out _selectedChoice_int);
-        isValidSelection = int.TryParse(_userInput_str, out indexSelected);
+        _isValidSelection = int.TryParse(_userInput_str, out indexSelected);
       }
 
       //  c) foot
@@ -84,12 +89,17 @@ namespace PizzaBox.Client.Singletons
     }// /md --choose
 
 
+    private void GetTheStore()
+    {
+      storeSelected = storeChoices[indexSelected];
+      System.Console.WriteLine($"You picked {storeSelected}.\n");
+    }
+
     // [III]. FOOT
     /// The string representation
     public override string ToString()
     {
-      //string _asString = base.ToString();
-      return "";//<!>
+      return storeSelected;
     }
   }
 }

@@ -27,11 +27,19 @@ namespace PizzaBox.Domain.Models.Pizzas
       // Cheese pizza needs a smooth crust, by default.
       Crust = new PizzaCrust(PizzaCrust.Choice.BUBBLY_ITALIAN);
 
-      foreach (PizzaToppingMeat _cheese in Enum.GetValues(typeof(PizzaToppingCheese.Choice)))
-      {
-        string _ch = _cheese.ToString();
-        if (_ch != "UNSUPPORTED" && _ch != "NO") { AddTopping(_cheese); }
-      }
+      // foreach (PizzaToppingCheese _cheese in Enum.GetValues(typeof(PizzaToppingCheese.Choice)))
+      // {
+      //   string _ch = _cheese.ToString();
+      //   if (_ch != "UNSUPPORTED" && _ch != "NO")
+      //     { AddTopping(_cheese); }
+      // }
+
+      AddTopping(new PizzaToppingCheese(PizzaToppingCheese.Choice.CHEDDAR));
+      AddTopping(new PizzaToppingCheese(PizzaToppingCheese.Choice.MOZZ_PROV_MIX));
+      AddTopping(new PizzaToppingCheese(PizzaToppingCheese.Choice.GORGONZOLA));
+
+
+
 
       //  c) foot  =created
     }

@@ -1,8 +1,8 @@
 using PizzaBox.Domain.Abstracts;
 
-namespace PizzaBox.Domain.Models.Components.Toppings
+namespace PizzaBox.Domain.Models.Components.Toppings //<!> update
 {
-  public class PizzaTopping : AComponent
+  public abstract class APizzaTopping : AComponent
   {
 
     public static readonly Price BASE_PRICE = new Price(.50M);
@@ -10,10 +10,10 @@ namespace PizzaBox.Domain.Models.Components.Toppings
 
     // [III]. FOOT
     /// Default constructor for a Topping if none can be found.
-    public override string ToString()
-    {
-      return "topping";
-    }
+    public abstract override string ToString();
+    // {
+    //   return "topping";
+    // }
   }// /cla
 }// /ns
  // EoF

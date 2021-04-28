@@ -27,10 +27,16 @@ namespace PizzaBox.Domain.Models.Pizzas
       // Veggie pizza needs a thin crust, by default.
       Crust = new PizzaCrust(PizzaCrust.Choice.NY_THIN);
 
-      foreach (PizzaToppingMeat _veggie in Enum.GetValues(typeof(PizzaToppingVeggie.Choice)))
-      {
-        if (_veggie.ToString() != "UNSUPPORTED") { AddTopping(_veggie); }
-      }
+      // foreach (PizzaToppingMeat _veggie in Enum.GetValues(typeof(PizzaToppingVeggie.Choice)))
+      // {
+      //   if (_veggie.ToString() != "UNSUPPORTED") { AddTopping(_veggie); }
+      // }
+
+      AddTopping(new PizzaToppingVeggie(PizzaToppingVeggie.Choice.MUSHROOM));
+      AddTopping(new PizzaToppingVeggie(PizzaToppingVeggie.Choice.GREEN_BELL_PEPPER));
+      AddTopping(new PizzaToppingVeggie(PizzaToppingVeggie.Choice.ONION));
+      AddTopping(new PizzaToppingVeggie(PizzaToppingVeggie.Choice.BANANA_PEPPER));
+      AddTopping(new PizzaToppingVeggie(PizzaToppingVeggie.Choice.DICED_TOMATO));
 
       //  c) foot  =created
     }

@@ -7,7 +7,7 @@ using PizzaBox.Domain.Abstracts;
 
 namespace PizzaBox.Domain.Models.Components.Toppings
 {
-  public class PizzaToppingFruit : PizzaTopping
+  public class PizzaToppingFruit : APizzaTopping
   {
     //  B]
     public enum Choice

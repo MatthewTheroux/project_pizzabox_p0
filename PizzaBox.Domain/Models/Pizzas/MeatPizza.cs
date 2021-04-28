@@ -28,10 +28,17 @@ namespace PizzaBox.Domain.Models.Pizzas
       Crust = new PizzaCrust(PizzaCrust.Choice.CHICAGO_DEEP_DISH);
       Sauce = new PizzaSauce(PizzaSauce.Choice.CHUNKY_MARINARA);
 
-      foreach (PizzaToppingMeat _meat in Enum.GetValues(typeof(PizzaToppingMeat.Choice)))
-      {
-        if (_meat.ToString() != "UNSUPPORTED") { AddTopping(_meat); }
-      }
+      // foreach (PizzaToppingMeat _meat in Enum.GetValues(typeof(PizzaToppingMeat.Choice)))
+      // {
+      //   if (_meat.ToString() != "UNSUPPORTED") { AddTopping(_meat); }
+      // }
+
+      AddTopping(new PizzaToppingMeat(PizzaToppingMeat.Choice.PEPPERONI));
+      AddTopping(new PizzaToppingMeat(PizzaToppingMeat.Choice.HAM));
+      AddTopping(new PizzaToppingMeat(PizzaToppingMeat.Choice.BACON));
+      AddTopping(new PizzaToppingMeat(PizzaToppingMeat.Choice.SAUSAGE));
+      AddTopping(new PizzaToppingMeat(PizzaToppingMeat.Choice.BEEF));
+
 
       //  c) foot  =created
     }
