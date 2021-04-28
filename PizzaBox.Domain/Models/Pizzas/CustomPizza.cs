@@ -11,30 +11,38 @@ using PizzaBox.Domain.Models.Components.Toppings;
 namespace PizzaBox.Domain.Models.Pizzas
 {
   /// a pizza topped with all of the meats
-  public class MeatPizza : APizza
+  public class CustomPizza : APizza
   {
     //  B] Fields and Properties
 
 
     // [II]. BODY
     ///
-    public MeatPizza()
+    public CustomPizza()
     {
       //  a) head
-      Name = "Meat Pizza";
+      Name = "Custom Pizza";
 
       //  b)  body
-      // Meat pizza needs a thick crust, by default.
-      Crust = new PizzaCrust(PizzaCrust.Choice.CHICAGO_DEEP_DISH);
-      Sauce = new PizzaSauce(PizzaSauce.Choice.CHUNKY_MARINARA);
-
-      foreach (PizzaToppingMeat _meat in Enum.GetValues(typeof(PizzaToppingMeat.Choice)))
-      {
-        if (_meat.ToString() != "UNSUPPORTED") { AddTopping(_meat); }
-      }
+      // Factory();
 
       //  c) foot  =created
     }
+
+    // private void Factory()
+    // {
+    //   AddSize();
+    //   AddCrust();
+    //   AddSauce();
+    //   AddCheese();
+
+
+    // }
+
+    // private void AddSize()
+    // {
+
+    // }
   }
 }// /ns
  // EoF

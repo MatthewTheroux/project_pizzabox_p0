@@ -13,12 +13,14 @@ namespace PizzaBox.Domain.Models.Components.Toppings
     public enum Choice
     {
       MUSHROOM = 1,
+
       ZUCCINI,
 
       BROCCOLI,
 
       ROASTED_RED_BELL_PEPPER,
       GREEN_BELL_PEPPER,
+
       ONION,
 
       CARROT,

@@ -10,19 +10,26 @@ namespace PizzaBox.Domain.Models
   /// 
   public class PizzaSize : ASize
   {
-    /// Pizza size choices, where index = radius in inches
+    /// Pizza size choices, where index = price multiplier, NOT radius in inches, as previous.
     public enum Choice
     {
 
-      ONE_MAN = 6,
-      MEDIUM = 12,
-      LARGE = 14,
-      SHEET = 20,
+      ONE_MAN = 1, // 6"
 
-      UNSUPPORTED = 86
+
+      MEDIUM = 3, // 12"
+
+      LARGE = 4, // 14"
+      SHEET = 6, // ≈20"?
+
+      UNSUPPORTED = 0//86
     }
 
     public Choice Selection { get; private set; }
+
+    /// How much
+    public int PriceMultiplier() { return (int)Selection; }
+
 
     // [II]. BODY
     public PizzaSize(Choice _selection) { Selection = _selection; }

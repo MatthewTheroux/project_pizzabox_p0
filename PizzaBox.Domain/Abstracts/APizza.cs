@@ -1,11 +1,13 @@
 //
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Serialization;
 
 using PizzaBox.Domain.Models;
+using PizzaBox.Domain.Models.Pizzas;
 using PizzaBox.Domain.Models.Components;
 using PizzaBox.Domain.Models.Components.Toppings;
 
@@ -13,28 +15,51 @@ using PizzaBox.Domain.Models.Components.Toppings;
 namespace PizzaBox.Domain.Abstracts
 {
 
-  //[XML Include ]
-  public abstract class @string : AModel
-  {
-    //  B] Properties
-    public string Name { get; protected set; }
-    public PizzaSize Size { get; protected set; }
-    public long SizeEntityId { get; protected set; }
-    public PizzaCrust Crust { get; protected set; }
-    public PizzaSauce Sauce { get; protected set; }
-    public PizzaToppingCheese Cheese { get; protected set; }
-    public List<PizzaTopping> Toppings { get; protected set; }
-    public PizzaSpice Spice { get; protected set; }
+  //[DataContract]
+  [XmlInclude(typeof(CustomPizza))]
+  //[XmlInclude(typeof(PepperroniPizza))]
+  [XmlInclude(typeof(CheesePizza))]
+  [XmlInclude(typeof(MeatPizza))]
+  [XmlInclude(typeof(VeggiePizza))]
+  public abstract class APizza : AModel
+  {    //  B] Fields and Properties
+    public string Name { get; set; }
+    public PizzaSize Size { get; set; }
+    public long SizeEntityId { get; set; }
+    public PizzaCrust Crust { get; set; }
+    public PizzaSauce Sauce { get; set; }
+    public PizzaToppingCheese Cheese { get; set; }
+    public List<PizzaTopping> Toppings { get; set; }
+    public PizzaSpice Spice { get; set; }
+
+
+
+    /// e.g., a one-man pizza with no toppings is $5.
+    private static readonly Price BASE_PRICE = new Price(5M);
+
+
+    /// Calculates the full price of the pizza, based on size and # of toppings
+    public Price Price
+    {
+      get
+      {
+        return new Price(
+          Size.PriceMultiplier() *
+          (BASE_PRICE.Amount //pizza
+           + (Toppings.Count * PizzaTopping.BASE_PRICE.Amount)
+          ));
+      }
+    }
 
     //  C] 
     /// Construct a default-defined pizza (as a concrete child).
-    public @string() { Factory(); }
+    public APizza() { Factory(); }
 
     private void Factory()
     {
       // Fill with defaults.
-      Size = new PizzaSize();
-      //SizeEntityId = int.Parse(Size);//.GetValue();
+      Size = new PizzaSize(1);
+      SizeEntityId = 1;//(int)Size;//int.Parse(Size).GetValue();
       Crust = new PizzaCrust();
       Sauce = new PizzaSauce();
       Cheese = new PizzaToppingCheese();
@@ -48,24 +73,27 @@ namespace PizzaBox.Domain.Abstracts
     //public void setCrust(PizzaCrust crust) { Crust = crust; }
 
 
-    public void AddTopping(PizzaTopping topping) { Toppings.Add(topping); }
+    public void AddTopping(PizzaTopping _topping) { Toppings.Add(_topping); }
 
     /// [III]. FOOT
     public override string ToString()
     {
       //<!> Use StringBuilder
-      StringBuilder asStringBuilder = new StringBuilder("{a ");
-      asStringBuilder.Append(Size + " ");
-      asStringBuilder.Append(Crust + " crust, ");
-      asStringBuilder.Append(Sauce + " sauced pizza with ");
-      asStringBuilder.Append(Cheese + "cheese, ");
-      //asString += "{";
-      foreach (PizzaTopping topping in Toppings) { asStringBuilder.Append(topping + ", "); }
-      asStringBuilder.Append("and " + Spice + " spices.");
+      StringBuilder asString = new StringBuilder("{a ");
+      asString.Append($"a {Size} ");
+      asString.Append($"{Crust} crust pizza, ");
+      asString.Append($"with {Sauce} sauce, ");
+      asString.Append($"{Cheese} cheese, ");
 
-      return asStringBuilder.ToString();
+      foreach (PizzaTopping _topping in Toppings)
+      {
+        asString.Append("{_topping}, ");
+      }
+      asString.Append($"and {Spice} spices");
+      asString.Append($": {Price}");
+
+      return asString.ToString();
     }// /'ToString'
-
 
   }// /cla 'APizza'
 }// /ns

@@ -12,7 +12,7 @@ namespace PizzaBox.Domain.Models.Components.Toppings
     //  B]
     public enum Choice
     {
-      NONE = 0,
+      NO = 0,
       MOZZERELLA,
       MOZZ_PROV_MIX,
       PROVOLONE,
